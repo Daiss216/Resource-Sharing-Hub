@@ -1,11 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 import { HomePage } from "./pages/HomePage";
 import { BrowsePage } from "./pages/BrowsePage";
 import { UploadPage } from "./pages/UploadPage";
 import { AdminPage } from "./pages/AdminPage";
+import { AuthButtonInNavbar } from "./pages/AuthModel";
+import { useAuth } from "./auth/AuthContext";
 
 const TABS = ["Home", "Browse", "Upload", "Admin"];
 
@@ -34,7 +36,7 @@ function App() {
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-xl bg-gradient-to-tr from-sky-400 via-emerald-300 to-indigo-300 shadow-md flex items-center justify-center text-white text-lg font-bold">
-              N
+              R
             </div>
             <div>
               <h1 className="text-lg font-semibold text-slate-800">
@@ -64,9 +66,7 @@ function App() {
 
           {/* Placeholder for user avatar / login later */}
           <div className="hidden sm:flex items-center gap-2">
-            <div className="h-8 w-8 rounded-full bg-gradient-to-tr from-amber-300 to-pink-300 flex items-center justify-center text-xs font-semibold text-slate-700">
-              U
-            </div>
+            <AuthButtonInNavbar />
           </div>
         </div>
       </header>

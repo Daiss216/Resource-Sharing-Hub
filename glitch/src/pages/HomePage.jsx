@@ -1,4 +1,15 @@
+import { useAuth } from "../auth/AuthContext";
+
 export function HomePage() {
+  const { user } = useAuth();
+  if (!user) {
+    return (
+      <p className="text-sm text-slate-600">
+        Please log in with your Google account to view notes and PYQs.
+      </p>
+    );
+  }
+
   return (
     <div className="grid gap-6 md:grid-cols-[2fr,1.3fr] items-start">
       {/* Hero */}
@@ -32,9 +43,21 @@ export function HomePage() {
 
         {/* Pill cards */}
         <div className="grid gap-3 sm:grid-cols-3 mt-4">
-          <StatCard label="Semesters covered" value="I – VIII" color="from-sky-400 to-sky-500" />
-          <StatCard label="Resource types" value="Notes • PYQs • Links" color="from-rose-400 to-rose-500" />
-          <StatCard label="Made for" value="AI & DS Dept" color="from-violet-400 to-violet-500" />
+          <StatCard
+            label="Semesters covered"
+            value="I – VIII"
+            color="from-sky-400 to-sky-500"
+          />
+          <StatCard
+            label="Resource types"
+            value="Notes • PYQs • Links"
+            color="from-rose-400 to-rose-500"
+          />
+          <StatCard
+            label="Made for"
+            value="AI & DS Dept"
+            color="from-violet-400 to-violet-500"
+          />
         </div>
       </section>
 

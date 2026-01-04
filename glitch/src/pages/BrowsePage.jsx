@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "../auth/AuthContext";
 
 const dummyResources = [
   {
@@ -33,6 +34,15 @@ const subjectsBySem = {
 const types = ["ALL", "NOTES", "PYQ", "BOOK", "LINK"];
 
 export function BrowsePage() {
+  const { user } = useAuth();
+  if (!user) {
+    return (
+      <p className="text-sm text-slate-600">
+        Please log in with your Google account to view notes and PYQs.
+      </p>
+    );
+  }
+
   const [semester, setSemester] = useState(4);
   const [subject, setSubject] = useState("");
   const [type, setType] = useState("ALL");
@@ -51,9 +61,7 @@ export function BrowsePage() {
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold text-slate-900">
-        Browse resources
-      </h2>
+      <h2 className="text-xl font-semibold text-slate-900">Browse resources</h2>
 
       {/* Filters */}
       <div className="rounded-2xl bg-white/80 border border-slate-100 shadow-sm p-3 flex flex-wrap gap-3 items-center">
@@ -175,4 +183,3 @@ function ResourceCard({ resource }) {
     </article>
   );
 }
-

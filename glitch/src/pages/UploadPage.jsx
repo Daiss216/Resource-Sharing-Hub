@@ -1,9 +1,18 @@
 import { useState } from "react";
+import { useAuth } from "../auth/AuthContext";
 
 const semesters = [3, 4, 5, 6, 7, 8];
 const types = ["NOTES", "PYQ", "BOOK", "LINK"];
 
 export function UploadPage() {
+  const { user } = useAuth();
+  if (!user) {
+    return (
+      <p className="text-sm text-slate-600">
+        Please log in with your Google account to view notes and PYQs.
+      </p>
+    );
+  }
   const [form, setForm] = useState({
     title: "",
     semester: 4,
@@ -37,7 +46,8 @@ export function UploadPage() {
         Upload notes / PYQs
       </h2>
       <p className="text-sm text-slate-600">
-        Help your juniors and classmates by uploading clear, well‑named resources.
+        Help your juniors and classmates by uploading clear, well‑named
+        resources.
       </p>
 
       <form
@@ -45,9 +55,7 @@ export function UploadPage() {
         className="rounded-2xl bg-white/80 border border-slate-100 shadow-sm p-4 space-y-3"
       >
         <div className="space-y-1">
-          <label className="text-xs font-medium text-slate-700">
-            Title
-          </label>
+          <label className="text-xs font-medium text-slate-700">Title</label>
           <input
             required
             name="title"
@@ -83,9 +91,7 @@ export function UploadPage() {
           </div>
 
           <div className="space-y-1">
-            <label className="text-xs font-medium text-slate-700">
-              Type
-            </label>
+            <label className="text-xs font-medium text-slate-700">Type</label>
             <select
               name="type"
               value={form.type}
@@ -102,9 +108,7 @@ export function UploadPage() {
         </div>
 
         <div className="space-y-1">
-          <label className="text-xs font-medium text-slate-700">
-            Subject
-          </label>
+          <label className="text-xs font-medium text-slate-700">Subject</label>
           <input
             required
             name="subject"
